@@ -4,9 +4,9 @@ volumes:
   pgadmin_data: {}
 
 services:
-  scala-accounts-service1:
-    container_name: scala-accounts-service1
-    image: scala-accounts-service1
+  acc-serv1:
+    container_name: acc-serv1
+    image: acc-serv1
     env_file: .env
     ports:
       - "8001:8081"
@@ -14,9 +14,9 @@ services:
       context: ./
       dockerfile: Dockerfile.accountsService
 
-  scala-accounts-service2:
-    container_name: scala-accounts-service2
-    image: scala-accounts-service2
+  acc-serv2:
+    container_name: acc-serv2
+    image: acc-serv2
     env_file: .env2
     ports:
       - "8002:8081"
@@ -24,9 +24,9 @@ services:
       context: ./
       dockerfile: Dockerfile.accountsService
 
-  scala-operations-service1:
-    container_name: scala-operations-service1
-    image: scala-operations-service1
+  operations-serv1:
+    container_name: operations-serv1
+    image: operations-serv1
     env_file: .env
     ports:
       - "8010:8081"
@@ -34,9 +34,9 @@ services:
       context: ./
       dockerfile: Dockerfile.operationsService
 
-  scala-fees-service1:
-    container_name: scala-fees-service1
-    image: scala-fees-service1
+  fees-serv1:
+    container_name: fees-serv1
+    image: fees-serv1
     env_file: .env
     ports:
       - "8011:8081"
@@ -44,9 +44,9 @@ services:
       context: ./
       dockerfile: Dockerfile.feesService
 
-  scala-cashbacks-service1:
-    container_name: scala-cashbacks-service1
-    image: scala-cashbacks-service1
+  cashbacks-serv1:
+    container_name: cashbacks-serv1
+    image: cashbacks-serv1
     env_file: .env
     ports:
       - "8012:8081"
