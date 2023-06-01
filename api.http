@@ -1,0 +1,121 @@
+###
+GET http://localhost:8001/accounts
+
+###
+POST http://localhost:8001/accounts HTTP/1.1
+Content-Type: application/json
+
+{
+  "ownerUserId": "c2c19535-7e9b-410a-95fd-8f6bacfcc15b",
+  "categoryId": "a9adc4ef-2172-44e5-b4c1-4b9b9e0e3100",
+  "name": "test user 2"
+}
+
+###
+GET http://localhost:8001/accounts/eaf37b10-423b-43da-a7d4-6e03d0afbb05
+
+###
+PUT http://localhost:8001/accounts/eaf37b10-423b-43da-a7d4-6e03d0afbb05 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "new test!"
+}
+
+###
+DELETE http://localhost:8001/accounts/eaf37b10-423b-43da-a7d4-6e03d0afbb05 HTTP/1.1
+
+
+### 
+POST http://localhost:8001/cash HTTP/1.1
+Content-Type: application/json
+
+{
+  "accountId": "4df9786b-adcc-4d7f-a43b-d649ac957300",
+  "amountChange": 100000,
+  "opType": "TOP_UP"
+}
+
+### 
+POST http://localhost:8001/transfer/by_account_id HTTP/1.1
+Content-Type: application/json
+
+{
+  "senderAccountId": "4df9786b-adcc-4d7f-a43b-d649ac957300",
+  "recipientAccountId": "8bef5a7b-53d1-49ff-b646-f0a6e95ed022",
+  "transferAmount":2000
+}
+
+###
+POST http://localhost:8002/cashbacks HTTP/1.1
+Content-Type: application/json
+
+{
+  "senderUserId": "5ff683e6-2c39-4eff-86f4-f4908da8ea86",
+  "transferAmount": 1000,
+  "cashbackPercent": 0.1
+}
+
+### 
+GET http://localhost:8002/cashbacks HTTP/1.1
+
+###
+POST http://localhost:8001/accrual_cashback HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "5ff683e6-2c39-4eff-86f4-f4908da8ea86",
+  "amountChange": 10000
+}
+
+###
+POST http://localhost:8002/cashbacks_pay HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "db884ca2-eb63-4197-baab-e10185937676"
+}
+
+###
+GET http://localhost:8001/categories HTTP/1.1
+
+###
+POST http://localhost:8001/categories HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Категория 2",
+  "cashbackPercent": 0.4
+}
+
+###
+POST http://localhost:8010/update/1/2000 HTTP/1.1
+Content-Type: application/json
+
+###
+POST http://localhost:8010/transfer HTTP/1.1
+Content-Type: application/json
+
+{
+  "sourceId": 1, 
+  "destinationId": 2, 
+  "value": 500
+}
+
+###
+POST http://localhost:8010/account HTTP/1.1
+Content-Type: application/json
+
+{
+  "initialAmount": 100,
+  "categoryId": 1
+}
+
+###
+GET http://localhost:8010/account/1 HTTP/1.1
+
+###
+GET http://localhost:8010/account/2 HTTP/1.1
+
+###
+POST http://localhost:8010/cashback/1 HTTP/1.1

@@ -1,0 +1,74 @@
+version: "3"
+
+volumes:
+  pgadmin_data: {}
+
+services:
+  scala-accounts-service1:
+    container_name: scala-accounts-service1
+    image: scala-accounts-service1
+    env_file: .env
+    ports:
+      - "8001:8081"
+    build:
+      context: ./
+      dockerfile: Dockerfile.accountsService
+
+  scala-accounts-service2:
+    container_name: scala-accounts-service2
+    image: scala-accounts-service2
+    env_file: .env2
+    ports:
+      - "8002:8081"
+    build:
+      context: ./
+      dockerfile: Dockerfile.accountsService
+
+  scala-operations-service1:
+    container_name: scala-operations-service1
+    image: scala-operations-service1
+    env_file: .env
+    ports:
+      - "8010:8081"
+    build:
+      context: ./
+      dockerfile: Dockerfile.operationsService
+
+  scala-fees-service1:
+    container_name: scala-fees-service1
+    image: scala-fees-service1
+    env_file: .env
+    ports:
+      - "8011:8081"
+    build:
+      context: ./
+      dockerfile: Dockerfile.feesService
+
+  scala-cashbacks-service1:
+    container_name: scala-cashbacks-service1
+    image: scala-cashbacks-service1
+    env_file: .env
+    ports:
+      - "8012:8081"
+    build:
+      context: ./
+      dockerfile: Dockerfile.cashbacksService
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - 9094:9094
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_OPTS: -Xms128m -Xmx256m
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://127.0.0.1:9094
+      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
+      KAFKA_ADVERTISED_HOSTNAME: INSIDE
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE

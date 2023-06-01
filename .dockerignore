@@ -1,0 +1,11 @@
+.bloop
+bsp
+.metals
+.vscode
+null
+PowerShell 7.2.9
+target
+api.http
+erd.drawio
+.env.example
+./build.sbt
